@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Doctor Profile</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	 <!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<style>
+h4 {
+	padding-left: 90px;
+}
+
+h5 {
+	padding-left: 40px;
+}
+
+p {
+	text-align="center";
+	padding-left:20px;
+}
+
+button {
+	float: left;
+    position: relative;
+    left: 40%;
+}
+</style>
+
+</head>
+<body>
+<div class="container-fluid">
+	
+  <div class="row">
+    <div class="col-sm-2 card" >
+	
+		</br>
+		</br>
+	
+		<div class="card-avatar">
+                                  <label for="file-input">
+                                      <img id="pic" style="width: 167px;" class="img-circle" src="/prof_pic.png" height=""/>
+                                  </label>
+                                  <input name="profile_pic" style="display: none" id="file-input" type="file"/> 
+                            </div>
+
+		
+		<div class="row">
+		<h5 text-align="center">Upload Profile Picture</h5>
+		</div>
+		<div class="row">
+		<h4 id="usename" text-align="center">Name</h4>
+		</div>
+		</br>
+		
+		<div class="row">
+		<p>Complete Your Profile to help your patients know more about you</p>
+		</div>
+	</div>
+
+    <div class="col-sm-10 card" style="background-color:lavenderblush;">
+	<br>
+	<br>
+   <h3 style="margin-top: 0px;padding-bottom: 16px;">Scan your Aadhar Card to get the details filled up Automatically !!!</h3>
+	<form role="form" id="setup_stud_form" action="/auth/signup_doc" method="post">
+	
+	<div class="row">
+     <div class="col-xs-4">
+       <div class="form-group label-floating">
+             <label class="control-label">Name</label>
+                      <input  id="name" name="usename" class="form-control" placeholder="Enter name">
+        </div>
+      </div>
+    </div>
+	
+	<div class="row">
+     <div class="col-xs-4">
+       <div class="form-group label-floating">
+             <label class="control-label">Aadhar ID</label>
+                      <input type="text" id="a_id" name="Aadh" class="form-control" placeholder="Enter Aadhar ID">
+        </div>
+      </div>
+    </div>
+	
+	
+	
+    <div class="row">
+     <div class="col-xs-4">
+       <div class="form-group label-floating">
+             <label class="control-label">Specialization</label>
+                      <input type="text" name="spcl" class="form-control" placeholder="Enter Specialization">
+        </div>
+      </div>
+    </div>
+	
+	<div class="row">
+     <div class="col-xs-4">
+       <div class="form-group label-floating">
+             <label class="control-label">Degree</label>
+                      <input type="text" name="deg"  class="form-control" placeholder="Enter Degree">
+        </div>
+      </div>
+    </div>
+	
+	<div class="row">
+     <div class="col-xs-4">
+       <div class="form-group label-floating">
+             <label class="control-label">Position</label>
+                      <input type="text" name="position" class="form-control" placeholder="Enter Position">
+        </div>
+      </div>
+    </div>
+	
+	<div class="row">
+     <div class="col-xs-4">
+       <div class="form-group label-floating">
+             <label class="control-label">Clinic Name</label>
+                      <input type="text" name="clc_name" class="form-control" placeholder="Enter Clinic Name">
+        </div>
+      </div>
+    </div>
+	
+	<div class="row">
+     <div class="col-md-9">
+       <div class="form-group label-floating">
+             <label class="control-label">Clinic Address</label>
+                      <input type="text" name="clc_add" class="form-control" placeholder="Enter Clinic Address">
+        </div>
+      </div>
+    </div>
+	
+	
+	<div class="row">
+     <div class="col-xs-4">
+       <div class="form-group label-floating">
+             <label class="control-label">Experience</label>
+                      <input type="text" name="exp" class="form-control" placeholder="Enter Experience">
+        </div>
+      </div>
+    </div>
+	
+	<div class="row">
+     <div class="col-xs-4">
+       <div class="form-group label-floating">
+             <label class="control-label">Consultation fee</label>
+                      <input type="text" name="clc_fee" class="form-control" placeholder="Enter Consultation Fee">
+        </div>
+      </div>
+    </div>
+	
+	<div class="row">
+                                          <div class="col-md-6">
+                        <div class="form-group label-floating">
+                          <label for="gender" class="control-label" style="font-size: 14px;">Gender</label><br>
+                          <label for="gender_male">
+                          <input  type="radio" id="d_gnd_m" value="M" name="gender" />
+                          Male
+                        </label><br>
+                        <label for="gender_female">
+                          <input  type="radio" id="d_gnd_f" value="F" name="gender" />
+                          Female
+                        </label><br>
+                        </div>
+                                          </div>                
+                                          <div class="col-md-3">
+                        <div class="form-group label-floating">
+                          <label class="control-label">Contact</label>
+                          <input name="contact" type="text" class="form-control" >
+                        </div>
+                                          </div>
+                                      </div>
+									  
+	<button type="submit" class="btn btn-primary">Update Profile</button>
+	</br>
+	</br>
+	</form>
+	</div>
+  </div>
+
+</div>
+</body>
+
+<script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js"></script>
+<script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
+ <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/additional-methods.min.js"></script>
+
+<script src="/socket.io/socket.io.js"></script>
+  <script type="text/javascript">
+
+  $(document).ready(function(){ 
+
+      var socket = io();
+
+      socket.on('connect',function(){
+          console.log('connected');
+
+          socket.on('doc_det',function(data){
+             console.log(data);
+             $("#name").val(data.nme)
+             $("#usename").html(''+data.nme);
+             $('#a_id').val(data.uid);
+             if($('#d_gnd_m').attr('value') == data.gnd){
+                $('#d_gnd_m').attr('checked',true);
+             }else{
+                $('#d_gnd_f').attr('checked',true);
+             }
+          })
+      });
+
+      $("input[type='image']").click(function(){
+          $("input[id='my_file']").click();
+      });
+
+      function readURL(input) {
+          if (input.files && input.files[0]) {
+              var reader = new FileReader();
+              
+              reader.onload = function (e) {
+                  $('#pic').attr('src', e.target.result);
+              }
+              
+              reader.readAsDataURL(input.files[0]);
+          }
+      }
+      
+      $("#file-input").change(function(){
+          readURL(this);
+      });
+  });
+  </script>
+  
+</html>

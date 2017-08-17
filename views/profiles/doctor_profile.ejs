@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Doctor Profile</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	 <!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<style>
+h4 {
+	padding-left: 90px;
+}
+
+h5 {
+	padding-left: 40px;
+}
+
+p {
+	text-align="center";
+	padding-left:20px;
+}
+
+button {
+	float: left;
+    position: relative;
+    left: 40%;
+}
+</style>
+
+</head>
+<body>
+<div class="container-fluid">
+	
+  <div class="row">
+    <div class="col-sm-2 card" >
+	
+		</br>
+		</br>
+	
+		<div class="card-avatar">
+                                  <label for="file-input">
+                                      <img id="pic" class="img-circle" src="generic-profile.png" width="200" height=""/>
+                                  </label>
+                                  <input name="profile_pic" style="display: none" id="file-input" type="file"/> 
+                            </div>
+		</br>
+	</div>
+
+    <div class="col-sm-10 card" style="background-color:lavenderblush;">
+	<br>
+	<br>
+	<form action="/action_page">
+	
+	<div class="row">
+     <div class="col-xs-4">
+       <div class="form-group label-floating">
+             <label class="control-label"><span>Name:</span><span id="name"><%= doctor.Name %></span></label>
+        </div>
+      </div>
+    </div>
+	
+	
+    <div class="row">
+     <div class="col-xs-4">
+       <div class="form-group label-floating">
+             <label class="control-label"><span>Specialization:</span><span id="spec"><%= doctor.Spcl %></span></label>
+        </div>
+      </div>
+    </div>
+	
+	<div class="row">
+     <div class="col-xs-4">
+       <div class="form-group label-floating">
+             <label class="control-label"><span>Position:</span><span id="pos"><%= doctor.Pos %></span></label>
+        </div>
+      </div>
+    </div>
+
+  <div class="row">
+     <div class="col-xs-4">
+       <div class="form-group label-floating">
+             <label class="control-label"><span>Experience:</span><span id="pos"><%= doctor.Exp %></span></label>
+        </div>
+      </div>
+    </div>
+
+  <div class="row">
+     <div class="col-xs-4">
+       <div class="form-group label-floating">
+             <label class="control-label"><span>Basic Fee:</span><span id="pos"><%= doctor.Fee %></span></label>
+        </div>
+      </div>
+    </div>
+
+	 <div class="row">
+     <div class="col-md-9">
+       <div class="form-group label-floating">
+             <label class="control-label"><span>Phone Number:</span><span id="ph_no"><%= doctor.Contact %></span></label>
+        </div>
+      </div>
+    </div>
+	
+	</div>
+  </div>
+
+</div>
+</body>
+</html>

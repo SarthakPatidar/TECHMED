@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Patient Profile</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+ <script src ="/account/assets/js/moment.min.js"></script>
+  <style>
+  span {
+	font-size: 100%
+  }
+  .new {
+  font-size: 200%
+  }
+ 
+  </style>
+</head>
+<body>
+
+<div class="container">
+</br>
+
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" id="home_btn" href="#home">HOME</a></li>
+    <li><a data-toggle="tab" id="mh" href="#menu1">MEDICAL HISTORY</a></li>
+  </ul>
+  <br><br><br>
+  <div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+      <h2>BIODATA</h2>
+	  </br>
+	  </br>
+      <span>Patient id: </span> <span id="p_id"><%= patient.uid %></span>
+	  </br>
+	  <span>Weight: </span> <span id="w_id"><%= patient.Weight %></span>
+	  </br>
+	  <span>Height: </span> <span id="h_id"><%= patient.Height %></span>
+	  </br>
+	  <span>BMI: </span> <span id="b_id"><%= patient.BMI %></span>
+	  </br>
+	  <span>Blood Pressure: </span> <span id="bp_id"><%= patient.Blood_Pressure %></span>
+	  </br></br>
+    <a href="/req_blood">Request blood</a></br>
+    </div>
+    <div id="menu1" class="tab-pane fade">
+      <h3>MEDICAL HISTORY</h3>
+      <div id="all_reports"></div>
+	  </br>
+    </div>
+
+	  
+</div>
+</div>
+  <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
+  <script src ="/account/assets/js/moment.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script type="text/javascript">
+
+        $(document).ready(function(){
+            var socket = io();
+            socket.on('connect',function(){
+               console.log('connected');
+            });
+            socket.on('doc_details',function(data){
+               console.log(data);
+            });
+            socket.on('show_details',function(data){
+              console.log(data);
+                $("#p_id").html(data.uid);
+                $("#w_id").html(data.wght);
+                $("#h_id").html(data.hght);
+                $("#b_id").html(data.bmi);
+                $("#bp_id").html(data.bp);
+            });
+            socket.on('pat_details',function(data){
+               console.log(data);
+
+            });
+            $("#mh").on('click',function(){
+               console.log('clicked <%= patient.uid %>');
+               socket.emit('get_history',{'id': '<%= patient.uid %>'})
+            });
+
+              socket.on('reports',function(data){
+                var time =  moment.utc(data.Date).toDate();
+                var actime = moment(time).format("MMM Do YY");
+                 console.log(data);
+                 $('#all_reports').append('<div class="card '+data._id+'">\
+                    <div class="card-block">\
+                      <span class="card-title new">Date: </span> <span class="new" id="Date">'+actime+'</span>\
+                      <div class="row">\
+                    <div class="col-sm-4">\
+                    <span>Doctor id: </span> <span id="doc_id">'+data.d_id+'</span>\
+                    </div>\
+                    <div class="col-sm-4">\
+                    <span>Disease: </span> <span id="dise">'+data.desc+'</span>\
+                    </div>\
+                    <div class="col-sm-4">\
+                    <span>Symptom: </span> <span id="symp">'+data.sym+'</span>\
+                    </div>\
+                    <div class="col-sm-4">\
+                    <span>Medicine: </span> <span id="med">'+data.med+'</span>\
+                    </div><div class="col-sm-4">\
+                      <form action="/conv_to_pdf" method="post">\
+                       <input type="hidden" name="rid" id="" value="'+data._id+'"></input>\
+                         <input type="hidden" name="time" id="" value="'+actime+'"></input>\
+                          <input type="hidden" name="doct_id" id="" value="'+data.d_id+'"></input>\
+                           <input type="hidden" name="dise" id="" value="'+data.desc+'"></input>\
+                            <input type="hidden" name="symp" id="" value="'+data.sym+'"></input>\
+                             <input type="hidden" name="med" id="" value="'+data.med+'"></input>\
+                       <button style="margin-top:20px;width: 150px;" id="pdf_btn" class="btn btn-success">Download PDF</button></form>\
+                    </div>\
+                    </div>\
+                    </div>\
+                  </div>');        
+              })
+
+            $("#home_btn").on('click',function(){
+                 $('#all_reports').html('');
+            });
+
+            $("#all_reports").on("click","#pdf_btn",function(){
+                console.log('reaching');
+ 
+            })
+        })
+  </script>
+</body>
+</html>

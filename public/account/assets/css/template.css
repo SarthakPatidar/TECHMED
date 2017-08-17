@@ -1,0 +1,20 @@
+li.notif_item{
+	height: 100px;
+    background-color: #edf2fa;
+    color: black;
+	margin-left: 10px;
+	margin-right: 20px;
+}
+
+li.notif_item img{
+	width: 120px;
+	padding: 20px 20px 0px 10px;
+	height: 80px;
+}
+
+li.notif_item .not_msg{
+	width: 74%;
+	position: relative;
+	left: 120px;
+	bottom: 55px;
+}
